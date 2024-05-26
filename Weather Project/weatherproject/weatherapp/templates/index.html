@@ -1,0 +1,49 @@
+
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Simple Weather App
+  </title>
+  <link rel="stylesheet" href="{% static 'style.css' %}">
+</head>
+
+<body style="background-color: rgb(24, 190, 190);">
+  <div style="padding-top: 80px; ">
+    <div class="weather-container" style="border-radius: 5px; background-color: rgb(6, 26, 81);">
+      <h1 style="color: aliceblue;">Simple Weather App</h1>
+      <div style="padding-left: 200px; padding-top: 10px; padding-bottom: 30px;">
+        <form method="POST">
+          {% csrf_token %}
+          <input type="search" id="city-search" name = "city" placeholder="Enter city name" style="height: 35px; width: 300px; border-radius: 5px;">
+          <button type="submit" style="background-color: rgb(56, 249, 49); border-radius: 5px; width: 80px; height: 35px;">SUBMIT</button>
+      </form>
+      </div>
+      <div>
+        <h2 style="color: aliceblue; text-align: center;">{{city}} Weather is - </h2>
+      </div>
+      <div class="forecast-container">
+        <div class="forecast-day">
+          <h2>Today</h2>
+          <img src="http://openweathermap.org/img/w/{{today.icon}}.png" class="weather-icon">
+          <h2>{{today.temp}}</h2>
+          <h4>{{today.description}}</h4>
+          <p>High: {{today.temp_max}}°C | Low: {{today.temp_min}}°C</p>
+        </div>
+        <div class="forecast-day">
+          <h2>Tomorrow</h2>
+          <img src="http://openweathermap.org/img/w/{{tomorrow.icon}}.png"  class="weather-icon">
+          <h2>{{tomorrow.temp}}</h2>
+          <h4>{{tomorrow.description}}</h4>
+          <p>High: {{tomorrow.temp_max}}°C | Low: {{tomorrow.temp_min}}°C</p>
+        </div>
+
+      </div>
+    </div>
+  </div>
+</body>
+
+</html>
